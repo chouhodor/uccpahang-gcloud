@@ -1,0 +1,147 @@
+[
+    {
+        "tx_name": "sukpa",
+        "a_male_dict": "C20",
+        "a_female_dict": "D20",
+        "discharge_dict": "G20",
+        "capacity_dict": "B20",
+        "passkey_dict": "7789",
+        "date_times_dict": "F20"
+        
+    },
+    {
+        "tx_name": "ilkkm",
+        "a_male_dict": "C21",
+        "a_female_dict": "D21",
+        "discharge_dict": "G21",
+        "capacity_dict": "B21",
+        "passkey_dict": "5526",
+        "date_times_dict": "F21"
+    },
+    {
+        "tx_name": "ilkkm_covid",
+        "a_male_dict": "C22",
+        "a_female_dict": "D22",
+        "discharge_dict": "G22",
+        "capacity_dict": "B22",
+        "passkey_dict": "5526",
+        "date_times_dict": "F22"
+    },
+    {
+        "tx_name": "maran",
+        "a_male_dict": "C23",
+        "a_female_dict": "D23",
+        "discharge_dict": "G23",
+        "capacity_dict": "B23",
+        "passkey_dict": "3654",
+        "date_times_dict": "F23"
+    },
+    {
+        "tx_name": "kuipsas",
+        "a_male_dict": "C24",
+        "a_female_dict": "D24",
+        "discharge_dict": "G24",
+        "capacity_dict": "B24",
+        "passkey_dict": "8794",
+        "date_times_dict": "F24"
+    },
+    {
+        "tx_name": "ump",
+        "a_male_dict": "C25",
+        "a_female_dict": "D25",
+        "discharge_dict": "G25",
+        "capacity_dict": "B25",
+        "passkey_dict": "6779",
+        "date_times_dict": "F25"
+    },
+    {
+        "tx_name": "azzahra",
+        "a_male_dict": "C26",
+        "a_female_dict": "D26",
+        "discharge_dict": "G26",
+        "capacity_dict": "B26",
+        "passkey_dict": "9093",
+        "date_times_dict": "F26"
+    },
+    {
+        "tx_name": "sulaiman_t",
+        "a_male_dict": "C27",
+        "a_female_dict": "D27",
+        "discharge_dict": "G27",
+        "capacity_dict": "B27",
+        "passkey_dict": "3366",
+        "date_times_dict": "F27"
+    },
+    {
+        "tx_name": "ipglipis",
+        "a_male_dict": "C28",
+        "a_female_dict": "D28",
+        "discharge_dict": "G28",
+        "capacity_dict": "B28",
+        "passkey_dict": "9682",
+        "date_times_dict": "F28"
+    },
+    {
+        "tx_name": "temerloh",
+        "a_male_dict": "C29",
+        "a_female_dict": "D29",
+        "discharge_dict": "G29",
+        "capacity_dict": "B29",
+        "passkey_dict": "0930",
+        "date_times_dict": "F29"
+    },
+    {
+        "tx_name": "uniten",
+        "a_male_dict": "C30",
+        "a_female_dict": "D30",
+        "discharge_dict": "G30",
+        "capacity_dict": "B30",
+        "passkey_dict": "7281",
+        "date_times_dict": "F30"
+    },
+    {
+        "tx_name": "ancasa",
+        "a_male_dict": "C32",
+        "a_female_dict": "D32",
+        "discharge_dict": "G32",
+        "capacity_dict": "B32",
+        "passkey_dict": "3505",
+        "date_times_dict": "F32"
+    },
+    {
+        "tx_name": "sg_kiol",
+        "a_male_dict": "C33",
+        "a_female_dict": "D33",
+        "discharge_dict": "G33",
+        "capacity_dict": "B33",
+        "passkey_dict": "7172",
+        "date_times_dict": "F33"
+    },
+    {
+        "tx_name": "panderas",
+        "a_male_dict": "C34",
+        "a_female_dict": "D34",
+        "discharge_dict": "G34",
+        "capacity_dict": "B34",
+        "passkey_dict": "3525",
+        "date_times_dict": "F34"
+    },
+    {
+        "tx_name": "sg_koyan",
+        "a_male_dict": "C35",
+        "a_female_dict": "D35",
+        "discharge_dict": "G35",
+        "capacity_dict": "B35",
+        "passkey_dict": "3663",
+        "date_times_dict": "F35"
+    },
+    {
+        "tx_name": "rompin",
+        "a_male_dict": "C36",
+        "a_female_dict": "D36",
+        "discharge_dict": "G36",
+        "capacity_dict": "B36",
+        "passkey_dict": "6268",
+        "date_times_dict": "F36"
+    }
+]

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>UCC Bed Watcher</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="600">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+  <link rel='stylesheet' href='/static/css/bootstrap.min.css' />
+  <script src="https://kit.fontawesome.com/e2fb75d014.js" crossorigin="anonymous"></script>
+  <style>
+    .red {
+      height: 10px;
+      width: 10px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .orange {
+      height: 10px;
+      width: 10px;
+      background-color: #ff8000;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .yellow {
+      height: 10px;
+      width: 10px;
+      background-color: #fff000;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .white {
+      height: 10px;
+      width: 10px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      flex: 50%;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="col-md-12 text-center">
+      <span style="white-space: nowrap;">
+        <h2>UCC Pahang Bed Watcher {{ date_times }} <a type="button" class="btn btn-primary"
+            href="{{ url_for('index') }}"><i class="fas fa-compress-alt fa-lg"></i></a></h2>
+      </span>
+      <!---<p>
+        Refresh timer
+        <span id="seconds">600</span> seconds.
+      </p>--->
+      <br>
+
+    </div>
+<div class="table-responsive">
+    <div class="row">
+      <div class="column">
+        <table class="table" style="width: 70%;margin-left: auto;margin-right: auto;">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>PKRC/PKRCS</th>
+                  <th>Male*</th>
+                  <th>Female*</th>
+                  <th>Total*</th>
+                  <th>Dis$</th>
+                  <th>Last updated#</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>
+                      <span class="{{ bor_colors(dict_sheet[18].get('BOR')) }}"></span>
+                  </td>
+                  <td>SUKPA</td>
+                  <td>{{ dict_sheet[18].get('Availability_male') }}</td>
+                  <td id='femaleSUKPA'>{{ dict_sheet[18].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[18].get('Availability_total') }}/{{ dict_sheet[18].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[18].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[18].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[19].get('BOR')) }}"></span>
+                  </td>
+                  <td>ILKKM</td>
+                  <td>{{ dict_sheet[19].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[19].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[19].get('Availability_total') }}/{{ dict_sheet[19].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[19].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[19].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <!-----<tr>
+                  <td><span class="{{ bor_colors(dict_sheet[20].get('BOR')) }}"></span></td>
+                  <td>I-KPKT</td>
+                  <td>{{ dict_sheet[20].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[20].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[20].get('Availability_total') }}/{{ dict_sheet[20].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[20].get('Discharge') }}</td>
+                  <td>{{ maxhours(dict_sheet[20].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[22].get('BOR')) }}"></span></td>
+                  <td>KUIPSAS</td>
+                  <td>{{ dict_sheet[22].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[22].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[22].get('Availability_total') }}/{{ dict_sheet[22].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[22].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[22].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[23].get('BOR')) }}"></span></td>
+                  <td>UMP</td>
+                  <td>{{ dict_sheet[23].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[23].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[23].get('Availability_total') }}<br>/{{ dict_sheet[23].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[23].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[23].get('Last_updated')) }} hr
+                  </td>
+              </tr>----->
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[21].get('BOR')) }}"></span></td>
+                  <td>Maran</td>
+                  <td>{{ dict_sheet[21].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[21].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[21].get('Availability_total') }}/{{ dict_sheet[21].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[21].get('Discharge') }}</td>
+                  <td>{{ maxhours(dict_sheet[21].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <!----<tr>
+                  <td><span class="{{ bor_colors(dict_sheet[27].get('BOR')) }}"></span></td>
+                  <td>Temerloh</td>
+                  <td>{{ dict_sheet[27].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[27].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[27].get('Availability_total') }}/{{ dict_sheet[27].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[27].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[27].get('Last_updated')) }} hr
+                  </td>
+              </tr>---->
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[28].get('BOR')) }}"></span></td>
+                  <td>UNITEN</td>
+                  <td>{{ dict_sheet[28].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[28].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[28].get('Availability_total') }}/{{ dict_sheet[28].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[28].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[28].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <!----<tr>
+                  <td><span class="{{ bor_colors(dict_sheet[26].get('BOR')) }}"></span></td>
+                  <td>IPG Lipis</td>
+                  <td>{{ dict_sheet[26].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[26].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[26].get('Availability_total') }}/{{ dict_sheet[26].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[26].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[26].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[31].get('BOR')) }}"></span></td>
+                  <td>Sg kiol(T)</td>
+                  <td>{{ dict_sheet[31].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[31].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[31].get('Availability_total') }}/{{ dict_sheet[31].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[31].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[31].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[32].get('BOR')) }}"></span></td>
+                  <td>Panderas(T)</td>
+                  <td>{{ dict_sheet[32].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[32].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[32].get('Availability_total') }}/{{ dict_sheet[32].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[32].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[32].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[33].get('BOR')) }}"></span></td>
+                  <td>Sg Koyan(T)</td>
+                  <td>{{ dict_sheet[33].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[33].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[33].get('Availability_total') }}/{{ dict_sheet[33].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[33].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[33].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[24].get('BOR')) }}"></span></td>
+                  <td>Azzahra Kuantan(S)</td>
+                  <td>{{ dict_sheet[24].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[24].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[24].get('Availability_total') }}/{{ dict_sheet[24].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[24].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[24].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[25].get('BOR')) }}"></span></td>
+                  <td>Sulaiman Temerloh(S)</td>
+                  <td>{{ dict_sheet[25].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[25].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[25].get('Availability_total') }}/{{ dict_sheet[25].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[25].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[25].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[30].get('BOR')) }}"></span></td>
+                  <td>Ancasa Pekan(S)</td>
+                  <td>{{ dict_sheet[30].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[30].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[30].get('Availability_total') }}/{{ dict_sheet[30].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[30].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[30].get('Last_updated')) }} hr
+                  </td>
+              </tr>---->
+              <tr>
+                  <td colspan="7">*Availability of beds, #Last updated in hours ago, $Potential discharges</td>
+              </tr>
+
+              <!---
+                <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[29].get('BOR')) }}"></span></td>
+                  <td>Test</td>
+                  <td>{{ dict_sheet[29].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[29].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[29].get('Availability_total') }}/{{ dict_sheet[29].get('Capacity') }}</td>
+                  <td>{{ dict_sheet[29].get('Discharge') }}</td>
+                  <td> {{ maxhours(dict_sheet[29].get('Last_updated')) }} hr
+                  </td>
+                </tr>
+                --->
+          </tbody>
+      </table>
+      </div>
+      <div class="column">
+        <table class="table" style="width: 70%; margin-left: auto;margin-right: auto;">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Hospital</th>
+                  <th>Male*</th>
+                  <th>Female*</th>
+                  <th>Total*</th>
+                  <th>Dis$</th>
+                  <th>Last updated#</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[0].get('BOR')) }}"></span></td>
+                  <td>HTAA-ICU</td>
+                  <td>{{ dict_sheet[0].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[0].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[0].get('Availability_total') }}/{{ dict_sheet[0].get('Capacity') }}</td>
+                  <td></td>
+                  <td> {{ maxhours(dict_sheet[0].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[1].get('BOR')) }}"></span></td>
+                  <td>HTAA-General</td>
+                  <td>{{ dict_sheet[1].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[1].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[1].get('Availability_total') }}/{{ dict_sheet[1].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[1].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[2].get('BOR')) }}"></span></td>
+                  <td>HOSHAS-ICU</td>
+                  <td>{{ dict_sheet[2].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[2].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[2].get('Availability_total') }}/{{ dict_sheet[2].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[2].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[3].get('BOR')) }}"></span></td>
+                  <td>HOSHAS-General</td>
+                  <td>{{ dict_sheet[3].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[3].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[3].get('Availability_total') }}/{{ dict_sheet[3].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[3].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[29].get('BOR')) }}"></span></td>
+                  <td> H Kuala Lipis-ICU</td>
+                  <td>{{ dict_sheet[29].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[29].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[29].get('Availability_total') }}/{{ dict_sheet[29].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[29].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[8].get('BOR')) }}"></span></td>
+                  <td> H Kuala Lipis-General</td>
+                  <td>{{ dict_sheet[8].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[8].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[8].get('Availability_total') }}/{{ dict_sheet[8].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[8].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[4].get('BOR')) }}"></span></td>
+                  <td>HMS (COVID)</td>
+                  <td>{{ dict_sheet[4].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[4].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[4].get('Availability_total') }}/{{ dict_sheet[4].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[4].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[6].get('BOR')) }}"></span></td>
+                  <td>H Jengka (COVID)</td>
+                  <td>{{ dict_sheet[6].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[6].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[6].get('Availability_total') }}/{{ dict_sheet[6].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[6].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[9].get('BOR')) }}"></span></td>
+                  <td> H Bentong</td>
+                  <td>{{ dict_sheet[9].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[9].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[9].get('Availability_total') }}/{{ dict_sheet[9].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[9].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[10].get('BOR')) }}"></span></td>
+                  <td>H Raub (COVID)
+                  </td>
+                  <td>{{ dict_sheet[10].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[10].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[10].get('Availability_total') }}/{{ dict_sheet[10].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[10].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td><span class="{{ bor_colors(dict_sheet[11].get('BOR')) }}"></span></td>
+                  <td>HoSHKa</td>
+                  <td>{{ dict_sheet[11].get('Availability_male') }}</td>
+                  <td>{{ dict_sheet[11].get('Availability_female') }}</td>
+                  <td>{{ dict_sheet[11].get('Availability_total') }}/{{ dict_sheet[11].get('Capacity') }}</td>
+                  <td></td>
+                  <td>
+                      {{ maxhours(dict_sheet[11].get('Last_updated')) }} hr
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="7">*Availability of beds, #Last updated in hours ago, $Potential discharges</td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+    </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="/static/js/bootstrap.bundle.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#hide1").hide();
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#hide2").hide();
+      });
+    </script>
+    <!---<script>
+      // Countdown timer for redirecting to another URL after several seconds
+
+      var seconds = 600; // seconds for HTML
+      var foo; // variable for clearInterval() function
+
+      function redirect() {
+        document.location.href = "{{ url_for('fullview') }}";
+      }
+
+      function updateSecs() {
+        document.getElementById("seconds").innerHTML = seconds;
+        seconds--;
+        if (seconds == -1) {
+          clearInterval(foo);
+          redirect();
+        }
+      }
+
+      function countdownTimer() {
+        foo = setInterval(function () {
+          updateSecs();
+        }, 1000);
+      }
+
+      countdownTimer();
+    </script>--->
+</body>
+
+</html>

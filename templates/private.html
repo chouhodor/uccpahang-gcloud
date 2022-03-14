@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Bed Watcher{% endblock %}
+{% block h2 %}Bed Watcher{% endblock %}
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item"><a class="nav-link" id="home-tab" aria-controls="home" href="{{ url_for('index') }}"
+                aria-selected="true">PKRC</a></li>
+        <li class="nav-item"><a class="nav-link" id="menu1-tab" aria-controls="menu1" href="{{ url_for('hospital') }}"
+                aria-selected="false">Government</a></li>
+        <li class="nav-item"><a class="nav-link active" id="menu2-tab" aria-controls="menu2"
+                href="{{ url_for('private') }}" aria-selected="false">Private</a></li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <!-- Private tab -->
+        <div id="menu2" class="tab-pane fade show active" role="tabpanel" aria-labelledby="menu2-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Male*</th>
+                        <th>Female*</th>
+                        <th>Total*</th>
+                        <th>Discharges$</th>
+                        <th>Last updated#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[12].get('BOR')) }}"></span></td>
+                        <td>SASMEC-ICU</td>
+                        <td>{{ dict_sheet[12].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[12].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[12].get('Availability_total') }}/{{ dict_sheet[12].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[12].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[13].get('BOR')) }}"></span></td>
+                        <td>SASMEC-General
+                        </td>
+                        <td>{{ dict_sheet[13].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[13].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[13].get('Availability_total') }}/{{ dict_sheet[13].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[13].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[14].get('BOR')) }}"></span></td>
+                        <td>Pahang MC</td>
+                        <td>{{ dict_sheet[14].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[14].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[14].get('Availability_total') }}/{{ dict_sheet[14].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[14].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[15].get('BOR')) }}"></span></td>
+                        <td> Kuantan MC</td>
+                        <td>{{ dict_sheet[15].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[15].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[15].get('Availability_total') }}/{{ dict_sheet[15].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[15].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[16].get('BOR')) }}"></span></td>
+                        <td>KPJ Pahang Sp</td>
+                        <td>{{ dict_sheet[16].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[16].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[16].get('Availability_total') }}/{{ dict_sheet[16].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[16].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[17].get('BOR')) }}"></span></td>
+                        <td> Darul Makmur MC </td>
+                        <td>{{ dict_sheet[17].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[17].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[17].get('Availability_total') }}/{{ dict_sheet[17].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[17].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">*Availability of beds, #Last updated in hours ago, $Potential discharges</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+{% block title %}Bed Watcher{% endblock %}
+{% block h2 %}Bed Watcher{% endblock %}
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item"><a class="nav-link" id="home-tab" aria-controls="home" href="{{ url_for('index') }}"
+                aria-selected="true">PKRC</a></li>
+        <li class="nav-item"><a class="nav-link active" id="menu1-tab" aria-controls="menu1"
+                href="{{ url_for('hospital') }}" aria-selected="false">Government</a></li>
+        <li class="nav-item"><a class="nav-link" id="menu2-tab" aria-controls="menu2" href="{{ url_for('private') }}"
+                aria-selected="false">Private</a></li>
+        <li class="nav-item ml-auto"><a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLoginForm2">UPDATE BED STATUS</a></li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <!-- Hospital tab -->
+        <div id="menu1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="menu1-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Hospital</th>
+                        <th>Male*</th>
+                        <th>Female*</th>
+                        <th>Total*</th>
+                        <th>Dis$</th>
+                        <th>Last updated#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[0].get('BOR')) }}"></span></td>
+                        <td>HTAA-ICU</td>
+                        <td>{{ dict_sheet[0].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[0].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[0].get('Availability_total') }}/{{ dict_sheet[0].get('Capacity') }}</td>
+                        <td></td>
+                        <td> {{ maxhours(dict_sheet[0].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[1].get('BOR')) }}"></span></td>
+                        <td>HTAA-General</td>
+                        <td>{{ dict_sheet[1].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[1].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[1].get('Availability_total') }}/{{ dict_sheet[1].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[1].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[2].get('BOR')) }}"></span></td>
+                        <td>HOSHAS-ICU</td>
+                        <td>{{ dict_sheet[2].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[2].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[2].get('Availability_total') }}/{{ dict_sheet[2].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[2].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[3].get('BOR')) }}"></span></td>
+                        <td>HOSHAS-General</td>
+                        <td>{{ dict_sheet[3].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[3].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[3].get('Availability_total') }}/{{ dict_sheet[3].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[3].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[29].get('BOR')) }}"></span></td>
+                        <td> H Kuala Lipis-ICU</td>
+                        <td>{{ dict_sheet[29].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[29].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[29].get('Availability_total') }}/{{ dict_sheet[29].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[29].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[8].get('BOR')) }}"></span></td>
+                        <td> H Kuala Lipis-General</td>
+                        <td>{{ dict_sheet[8].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[8].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[8].get('Availability_total') }}/{{ dict_sheet[8].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[8].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[4].get('BOR')) }}"></span></td>
+                        <td>HMS (COVID)</td>
+                        <td>{{ dict_sheet[4].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[4].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[4].get('Availability_total') }}/{{ dict_sheet[4].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[4].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[6].get('BOR')) }}"></span></td>
+                        <td>H Jengka (COVID)</td>
+                        <td>{{ dict_sheet[6].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[6].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[6].get('Availability_total') }}/{{ dict_sheet[6].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[6].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[9].get('BOR')) }}"></span></td>
+                        <td> H Bentong</td>
+                        <td>{{ dict_sheet[9].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[9].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[9].get('Availability_total') }}/{{ dict_sheet[9].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[9].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[10].get('BOR')) }}"></span></td>
+                        <td>H Raub (COVID)
+                        </td>
+                        <td>{{ dict_sheet[10].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[10].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[10].get('Availability_total') }}/{{ dict_sheet[10].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[10].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[11].get('BOR')) }}"></span></td>
+                        <td>HoSHKa</td>
+                        <td>{{ dict_sheet[11].get('Availability_male') }}</td>
+                        <td>{{ dict_sheet[11].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[11].get('Availability_total') }}/{{ dict_sheet[11].get('Capacity') }}</td>
+                        <td></td>
+                        <td>
+                            {{ maxhours(dict_sheet[11].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">*Availability of beds, #Last updated in hours ago, $Potential discharges</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Modal form HOSPITAL START-->
+            <div class="modal fade" id="modalLoginForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">
+                                Update Bed Status
+                            </h4>
+                        </div>
+                        <form action="/result_hospital" method="POST">
+                            <div class="form-group">
+                                <div class="modal-body">
+                                    <div class="md-3">
+
+                                        <select class="form-control" name="hospital" required>
+                                            <option value="" disabled selected>
+                                                Select Hospital
+                                            </option>
+                                            <option value="htaa_icu">HTAA-ICU</option>
+                                            <option value="htaa_gen">HTAA-general</option>
+                                            <option value="hoshas_icu">HOSHAS-ICU</option>
+                                            <option value="hoshas_gen">HOSHAS-general</option>
+                                            <option value="hklipis_icu">H Kuala Lipis ICU</option>
+                                            <option value="hklipis_gen">H Kuala Lipis General</option>
+                                            <option value="hms">HMS</option>
+                                            <option value="hjka">HJKA</option>
+                                            <option value="hbentong">H Bentong</option>
+                                            <option value="hraub">H Raub</option>
+                                            <option value="hoshka">HoSHKa</option>
+
+                                        </select>
+                                        <br />
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="a_male" class="col-sm-8 col-form-label">Male Bed Availability</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" type="number" name="a_male"
+                                                id="a_male" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="a_female" class="col-sm-8 col-form-label">Female Bed
+                                            Availability</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="number" name="a_female" id="a_female"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="capacity" class="col-sm-8 col-form-label">Total Bed Availability</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="number" name="a_total" id="a_total"
+                                                autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="capacity" class="col-sm-8 col-form-label">Capacity</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="number" name="capacity" id="capacity" min="1"
+                                                autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="passkey" class="col-sm-8 col-form-label">PASSKEY(4 digit)</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="password" name="passkey" placeholder="  ----  "
+                                                autocomplete="off" maxlength="4" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <input class="btn btn-block btn-success" type="submit" value="Submit" />
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hide2" class="text-center">
+            <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal"
+                data-target="#modalLoginForm2">UPDATE BED
+                STATUS</a>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Total male*</th>
+                        <th>Total female*</th>
+                        <th>Grand total*</th>
+                        <th>Total beds</th>
+                        <th>BOR(%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sh_grand[0].get('bor')) }}"></span></td>
+                        <td>PKRC</td>
+                        <td>{{ dict_sh_grand[0].get('total_male') }}</td>
+                        <td>{{ dict_sh_grand[0].get('total_female') }}</td>
+                        <td>{{ dict_sh_grand[0].get('grand_total') }}</td>
+                        <td>{{ dict_sh_grand[0].get('grand_beds') }}</td>
+                        <td>{{ dict_sh_grand[0].get('bor') }}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sh_grand[1].get('bor')) }}"></span></td>
+                        <td>PKRCS</td>
+                        <td>{{ dict_sh_grand[1].get('total_male') }}</td>
+                        <td>{{ dict_sh_grand[1].get('total_female') }}</td>
+                        <td>{{ dict_sh_grand[1].get('grand_total') }}</td>
+                        <td>{{ dict_sh_grand[1].get('grand_beds') }}</td>
+                        <td>{{ dict_sh_grand[1].get('bor') }}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sh_grand[2].get('bor')) }}"></span></td>
+                        <td>Hospital(Gov)</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{{ dict_sh_grand[2].get('grand_total') }}</td>
+                        <td>{{ dict_sh_grand[2].get('grand_beds') }}</td>
+                        <td>{{ dict_sh_grand[2].get('bor') }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

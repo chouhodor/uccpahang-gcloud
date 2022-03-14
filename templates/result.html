@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Bed Watcher{% endblock %}
+{% block h2 %}Bed Watcher{% endblock %}
+{% block content %}
+<div class="container">
+  <hr />
+  <br />
+  <div class="col-md-12 text-center">
+    <h2>Update Bed Status {{ status }}</h2>
+  </div>
+  <div class="container">
+    <img id="image" style="display: block;margin-left: auto;margin-right: auto;width: 50%;" />
+  </div>
+  <br />
+  <div class="col-md-12 text-center">
+    <a href="{{ url_for('index') }}" class="btn btn-primary" role="button">Return to dashboard</a>
+  </div>
+</div>
+{% endblock%}
+{% block scripts %}
+{{ super() }}
+<script>
+  var images = [
+    "/static/images/img1.jpg",
+    "/static/images/img2.jpg",
+    "/static/images/img3.jpg",
+    "/static/images/img4.jpg",
+    "/static/images/img5.jpg"
+  ];
+
+  function randImg() {
+    var size = images.length;
+    var x = Math.floor(size * Math.random());
+    document.getElementById("image").src = images[x];
+  }
+  randImg();
+</script>
+{% endblock %}

@@ -1,0 +1,824 @@
+{% extends "base.html" %}
+{% block title %}Statistic{% endblock %}
+{% block h2 %}Statistic{% endblock %}
+{% block content %}
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" aria-controls="home" href="#home"
+        aria-selected="true">PKRC</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu1" href="#menu1"
+        aria-selected="false">ILKKM</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu2" href="#menu2"
+        aria-selected="false">SUKPA</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu3" href="#menu3"
+        aria-selected="false">I-KPKT</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu4" href="#menu4"
+        aria-selected="false">UMP</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu5" href="#menu5"
+        aria-selected="false">KUIPSAS</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu6" href="#menu6"
+        aria-selected="false">Maran</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu7" href="#menu7"
+        aria-selected="false">UNITEN</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu8" href="#menu8"
+        aria-selected="false">Temerloh</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu9" href="#menu9"
+        aria-selected="false">IPG Lipis</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" aria-controls="menu10" href="#menu10"
+        aria-selected="false">Rompin</a></li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <!-- PKRC tab -->
+    <div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+      <br>
+      <div id="total-pkrc" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('total-pkrc', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC negeri Pahang'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+              },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(master_list)| safe }}
+              }]
+            });
+          });
+      </script>
+      <br>
+      <div id="total-vspkrc" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('total-vspkrc', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC berlainan'
+            },
+            colors: ['#0066ff', '#ff0000', '#ffcc00', '#33cc33', '#9900cc', '	#ff6600', '#006600', '#00ccff', '#996633', '#8c8c8c'],
+            xAxis: {
+              categories: {{ tarikh_2| safe }}
+                      },
+
+          series: [{
+            name: 'ILKKM',
+            data: {{ jumlah_2(ilkkm_list)| safe }}
+                      },
+          {
+            name: 'SUKPA',
+            data: {{ jumlah_2(sukpa_list)| safe }}
+                      },
+          {
+            name: 'I-KPKT',
+            data: {{ jumlah_2(ikpkt_list)| safe }}
+                      },
+          {
+            name: 'UMP',
+            data: {{ jumlah_2(ump_list)| safe }}
+                      },
+          {
+            name: 'KUIPSAS',
+            data: {{ jumlah_2(kuipsas_list)| safe }}
+                      },
+          {
+            name: 'Maran',
+            data: {{ jumlah_2(maran_list)| safe }}
+                      },
+          {
+            name: 'UNITEN',
+            data: {{ jumlah_2(uniten_list)| safe }}
+                      },
+          {
+            name: 'Temerloh',
+            data: {{ jumlah_2(temerloh_list)| safe }}
+                      },
+          {
+            name: 'IPG Lipis',
+            data: {{ jumlah_2(ipglipis_list)| safe }}
+                      },
+          {
+            name: 'Rompin',
+            data: {{ jumlah_2(rompin_list)| safe }}
+                      }
+        ]
+            });
+          });
+      </script>
+      <br>
+      <div id="total-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('total-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+              },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(master_list)| safe }}
+              },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(master_list)| safe }}
+              }]
+            });
+          });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+
+
+
+    <!-- ILKKM tab -->
+    <div id="menu1" class="tab-pane fade" role="tabpanel" aria-labelledby="menu1-tab">
+      <br>
+      <div id="ilkkm" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ilkkm', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan ILKKM'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+            },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(ilkkm_list)| safe }}
+            }]
+          });
+        });
+      </script>
+      <br>
+      <div id="ilkkm-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ilkkm-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan ILKKM mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                      },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(ilkkm_list)| safe }}
+                      },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(ilkkm_list)| safe }}
+                      }]
+                    });
+                  });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+    </div>
+
+
+
+    <!-- SUKPA tab -->
+    <div id="menu2" class="tab-pane fade" role="tabpanel" aria-labelledby="menu2-tab">
+      <br>
+      <div id="sukpa" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('sukpa', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan SUKPA'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+            },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(sukpa_list)| safe }}
+            }]
+          });
+        });
+      </script>
+      <br>
+      <div id="sukpa-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('sukpa-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan SUKPA mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                      },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(sukpa_list)| safe }}
+                      },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(sukpa_list)| safe }}
+                      }]
+                    });
+                  });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+    </div>
+
+
+    <!-- I-KPKT tab -->
+    <div id="menu3" class="tab-pane fade" role="tabpanel" aria-labelledby="menu3-tab">
+      <br>
+      <div id="ikpkt" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ikpkt', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan I-KPKT'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+            },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(ikpkt_list)| safe }}
+            }]
+          });
+        });
+      </script>
+      <br>
+      <div id="ikpkt-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ikpkt-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan I-KPKT mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                      },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(ikpkt_list)| safe }}
+                      },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(ikpkt_list)| safe }}
+                      }]
+                    });
+                  });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+
+    <!-- UMP tab -->
+    <div id="menu4" class="tab-pane fade" role="tabpanel" aria-labelledby="menu4-tab">
+      <br>
+      <div id="ump" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ump', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan UMP'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+            },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(ump_list)| safe }}
+            }]
+          });
+        });
+      </script>
+      <br>
+      <div id="ump-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ump-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan UMP mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                      },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(ump_list)| safe }}
+                      },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(ump_list)| safe }}
+                      }]
+                    });
+                  });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <!-- KUIPSAS tab -->
+    <div id="menu5" class="tab-pane fade" role="tabpanel" aria-labelledby="menu5-tab">
+      <br>
+      <div id="kuipsas" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('kuipsas', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan KUIPSAS'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+            },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(kuipsas_list)| safe }}
+            }]
+          });
+        });
+      </script>
+      <br>
+      <div id="kuipsas-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('kuipsas-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan KUIPSAS mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                      },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(kuipsas_list)| safe }}
+                      },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(kuipsas_list)| safe }}
+                      }]
+                    });
+                  });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+    <!-- Maran tab -->
+    <div id="menu6" class="tab-pane fade" role="tabpanel" aria-labelledby="menu6-tab">
+      <br>
+      <div id="maran" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('maran', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC Maran'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+          },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(maran_list)| safe }}
+          }]
+        });
+      });
+      </script>
+      <br>
+      <div id="maran-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('maran-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC Maran mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                    },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(maran_list)| safe }}
+                    },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(maran_list)| safe }}
+                    }]
+                  });
+                });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+    <!-- UNITEN tab -->
+    <div id="menu7" class="tab-pane fade" role="tabpanel" aria-labelledby="menu7-tab">
+      <br>
+      <div id="uniten" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('uniten', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC UNITEN'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(uniten_list)| safe }}
+                }]
+              });
+            });
+      </script>
+      <br>
+      <div id="uniten-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('uniten-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC UNITEN mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                          },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(uniten_list)| safe }}
+                          },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(uniten_list)| safe }}
+                          }]
+                        });
+                      });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+    <!-- Temerloh tab -->
+    <div id="menu8" class="tab-pane fade" role="tabpanel" aria-labelledby="menu8-tab">
+      <br>
+      <div id="temerloh" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('temerloh', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC Temerloh'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+          },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(temerloh_list)| safe }}
+          }]
+        });
+      });
+      </script>
+      <br>
+      <div id="temerloh-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('temerloh-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC Temerloh mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                    },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(temerloh_list)| safe }}
+                    },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(temerloh_list)| safe }}
+                    }]
+                  });
+                });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+    <!-- IPG Lipis tab -->
+    <div id="menu9" class="tab-pane fade" role="tabpanel" aria-labelledby="menu9-tab">
+      <br>
+      <div id="ipglipis" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ipglipis', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC IPG Lipis'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(ipglipis_list)| safe }}
+                }]
+              });
+            });
+      </script>
+      <br>
+      <div id="ipglipis-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('ipglipis-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC IPG Lipis mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                          },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(ipglipis_list)| safe }}
+                          },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(ipglipis_list)| safe }}
+                          }]
+                        });
+                      });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <!-- Rompin tab -->
+    <div id="menu10" class="tab-pane fade" role="tabpanel" aria-labelledby="menu10-tab">
+      <br>
+      <div id="rompin" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('rompin', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan Rompin Lipis'
+            },
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                    },
+
+          series: [{
+            name: 'Jumlah pesakit',
+            data: {{ jumlah(rompin_list)| safe }}
+                    }]
+                  });
+                });
+      </script>
+      <br>
+      <div id="rompin-jantina" style="width:100%; height:400px;"></div>
+      <script>document.addEventListener('DOMContentLoaded', function () {
+          const chart = Highcharts.chart('rompin-jantina', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Kemasukan PKRC Rompin mengikut jantina'
+            },
+            colors: ['#0066ff', '#ff0000'],
+            xAxis: {
+              categories: {{ tarikh| safe }}
+                              },
+
+          series: [{
+            name: 'Lelaki',
+            data: {{ lelaki(rompin_list)| safe }}
+                              },
+          {
+            name: 'Perempuan',
+            data: {{ perempuan(rompin_list)| safe }}
+                              }]
+                            });
+                          });
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+
+
+
+{{ super() }}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "uccpahang-bedmonitor",
+  "private_key_id": "a412ef34315cccaaa1e1739cea6125a625c066ba",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDSme2lNB2ZjmRs\nX5b58FV+hcwaeRDIDNURw0DNO3tokarXQvZ/Pt+CV1r9lbrFDjrF6gfkex+lH5mi\nflHIaJChNlsm4AgcxySzSB0VXMj+R1hccTzlxSlMgn0WlKE3o3QtyNVDcDWVX1PN\nvHrHHcdB1cHKxcexk56gLY952SzJwQA+eDPKC9pZdrJfSp/jCqRjJgpxE2Yc8FdN\n1xIet1OLkTPUD3L2qf23OFHpBZQniZKVFfoATw1OqDj+t0Dtv7mtMFkw0E/0nqxk\nFVQCrVnFyxu3zLGaEHsiM8P0Sx1xmu1hdNcbMt7gRCIqwUWgj01F2w89Rw733atg\nS85F97ofAgMBAAECggEAGTyr7z+jCms3WotL7tCfliVXc5atbaOoBtRkmBN4Muw9\n0kTqgA4bP6XTOA8wzftqDJyCbJ1aifGS+hd0GnV5W3BFlQ+EuVod6kQKhCxVw67u\nBknll808KTh73/BYr2+tdO0brVStfyRoyP88oU7OuXNxoSh5SSzc9envxxTA2r5H\nvD3dR91KCz+CE4M7TDsPXu/gk2Ahr32379rksk1qeQycglGjK6Oii5NMG+8x9+l8\nE4jvMRyH2b5bjORLHLm01DMRX11q4KEJKtW2L28SQtQHoULJzplmOWwuR1HSpH/k\nhFylo+lXAKenC4PCXo0e0VmxyIC/92dN/gcz+VL2+QKBgQD867an/cBx0iQ8n9EJ\nY5A4YgkX9tf8uEu7/zj7IS3l7lgWyp6HyeP+p0/QP2nr18kHABekEBLwGzvFeYhp\ngGGWh320tX+WO7Mqkb78OcJshnB5A8tYEVwW9D4gQVX5VOrJOef/37huSyGouzLG\nYml/59Qho7GjGYD5AnEjGN7NFwKBgQDVKlD4y3HcAIQLrUacyld5hBArNEW12GGr\n1NMbZqAr/2b94GFnIctq71EBmRJMEzRxqrPkqZ9jpnOQaMejtimfMqy9eC00BkZ5\nubsEk5B/GxBuFQyLaTWUJtcW7d+L/OvTXvnUGeNGOReYxbNNgYrKsf8RYortGBlF\n/L3WK65wOQKBgBOpo5al1JtEsgqAhjjLo7+uZ3SUfTAph8HC0sQ7TR0uDW0gLXjz\nCiWXDk5rT6nFKdzAdhYMJdzC0T/F9gP1tiCEwhIVdijQ1Vn+4LEtMF9NiFrwH5Pm\nLZmfPWE2kx+CKYqhVNcApo70ilZaz1S6++a0uDoxRrMeXXd+aBtJaLDbAoGBANPt\nEjuH6FcVnDIPv1g6QuVoyrppabT0v4YaPRfM3AliDn7xCWWDT72s2BiCmpJPtaAc\nWmVHzlNANTypL3IvtQm1U8+7HxXN91slsC1ImCwGODt5adNgcggs5ULCk7GVbs/i\naPbaFf7G3BLi2vR/igEjHbenBP/bKaVPNV0saGzhAoGBAKDwBK4EoTv7ZMeqVMof\nNjZjjVlsVxMUhtuTzfWvk3hw2eYOFEyPD4Lye3qcXRHOn7086gTTnQsA3f0qU0Jq\nuDVSutLUjtqBakSwaU8akbfG1XSABxJJhpmjs4C02e4WamoT7y746dwdvFSHyKKM\n43EQBRSkg7ihp2GlrZGEgoND\n-----END PRIVATE KEY-----\n",
+  "client_email": "uccpahang-admin@uccpahang-bedmonitor.iam.gserviceaccount.com",
+  "client_id": "111367652373873224005",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/uccpahang-admin%40uccpahang-bedmonitor.iam.gserviceaccount.com"
+}

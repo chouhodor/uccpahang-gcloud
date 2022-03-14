@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+{% block title %}Bed Watcher{% endblock %}
+{% block h2 %}Bed Watcher{% endblock %}
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item"><a class="nav-link active" id="home-tab" aria-controls="home" href="{{ url_for('index') }}"
+                aria-selected="true">PKRC</a></li>
+        <li class="nav-item"><a class="nav-link" id="menu1-tab" aria-controls="menu1" href="{{ url_for('hospital') }}"
+                aria-selected="false">Government</a></li>
+        <li class="nav-item"><a class="nav-link" id="menu2-tab" aria-controls="menu2" href="{{ url_for('private') }}"
+                aria-selected="false">Private</a></li>
+        <li class="nav-item ml-auto"><a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLoginForm">UPDATE BED STATUS</a></li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <!-- PKRC tab -->
+        <div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>PKRC/PKRCS</th>
+                        <th>Male*</th>
+                        <th>Female*</th>
+                        <th>Total*</th>
+                        <th>Dis$</th>
+                        <th>Last updated#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="{{ bor_colors(dict_sheet[18].get('BOR')) }}"></span>
+                        </td>
+                        <td>SUKPA</td>
+                        <td id='malesukpa'>{{ dict_sheet[18].get('Availability_male') }}</td>
+                        <td id='femalesukpa'>{{ dict_sheet[18].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[18].get('Availability_total') }}/{{ dict_sheet[18].get('Capacity') }}</td>
+                        <td id='capsukpa' hidden="True">{{ dict_sheet[18].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[18].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[18].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[19].get('BOR')) }}"></span>
+                        </td>
+                        <td>ILKKM</td>
+                        <td id='maleilkkm'>{{ dict_sheet[19].get('Availability_male') }}</td>
+                        <td id='femaleilkkm'>{{ dict_sheet[19].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[19].get('Availability_total') }}/{{ dict_sheet[19].get('Capacity') }}</td>
+                        <td id='capilkkm' hidden="True">{{ dict_sheet[19].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[19].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[19].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[20].get('BOR')) }}"></span></td>
+                        <td>ILKKM(COVID)</td>
+                        <td id='maleilkkm_covid'>{{ dict_sheet[20].get('Availability_male') }}</td>
+                        <td id='femaleilkkm_covid'>{{ dict_sheet[20].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[20].get('Availability_total') }}/{{ dict_sheet[20].get('Capacity') }}</td>
+                        <td id='capilkkm_covid' hidden="True">{{ dict_sheet[20].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[20].get('Discharge') }}</td>
+                        <td>{{ maxhours(dict_sheet[20].get('Last_updated')) }} hr
+                        </td>
+                    <!--</tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[22].get('BOR')) }}"></span></td>
+                        <td>KUIPSAS</td>
+                        <td id='malekuipsas'>{{ dict_sheet[22].get('Availability_male') }}</td>
+                        <td id='femalekuipsas'>{{ dict_sheet[22].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[22].get('Availability_total') }}/{{ dict_sheet[22].get('Capacity') }}</td>
+                        <td id='capkuipsas' hidden="True">{{ dict_sheet[22].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[22].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[22].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[23].get('BOR')) }}"></span></td>
+                        <td>UMP</td>
+                        <td id='maleump'>{{ dict_sheet[23].get('Availability_male') }}</td>
+                        <td id='femaleump'>{{ dict_sheet[23].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[23].get('Availability_total') }}<br>/{{ dict_sheet[23].get('Capacity') }}</td>
+                        <td id='capump' hidden="True">{{ dict_sheet[23].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[23].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[23].get('Last_updated')) }} hr
+                        </td>
+                    </tr>---->
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[21].get('BOR')) }}"></span></td>
+                        <td>Maran</td>
+                        <td id='malemaran'>{{ dict_sheet[21].get('Availability_male') }}</td>
+                        <td id='femalemaran'>{{ dict_sheet[21].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[21].get('Availability_total') }}/{{ dict_sheet[21].get('Capacity') }}</td>
+                        <td id='capmaran' hidden="True">{{ dict_sheet[21].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[21].get('Discharge') }}</td>
+                        <td>{{ maxhours(dict_sheet[21].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <!----<tr>
+                        <td><span class="{{ bor_colors(dict_sheet[27].get('BOR')) }}"></span></td>
+                        <td>Temerloh</td>
+                        <td id='maletemerloh'>{{ dict_sheet[27].get('Availability_male') }}</td>
+                        <td id='femaletemerloh'>{{ dict_sheet[27].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[27].get('Availability_total') }}/{{ dict_sheet[27].get('Capacity') }}</td>
+                        <td id='captemerloh' hidden="True">{{ dict_sheet[27].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[27].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[27].get('Last_updated')) }} hr
+                        </td>
+                    </tr>---->
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[28].get('BOR')) }}"></span></td>
+                        <td>UNITEN</td>
+                        <td id='maleuniten'>{{ dict_sheet[28].get('Availability_male') }}</td>
+                        <td id='femaleuniten'>{{ dict_sheet[28].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[28].get('Availability_total') }}/{{ dict_sheet[28].get('Capacity') }}</td>
+                        <td id='capuniten' hidden="True">{{ dict_sheet[28].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[28].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[28].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <!---<tr>
+                        <td><span class="{{ bor_colors(dict_sheet[26].get('BOR')) }}"></span></td>
+                        <td>IPG Lipis</td>
+                        <td id='maleipglipis'>{{ dict_sheet[26].get('Availability_male') }}</td>
+                        <td id='femaleipglipis'>{{ dict_sheet[26].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[26].get('Availability_total') }}/{{ dict_sheet[26].get('Capacity') }}</td>
+                        <td id='capipglipis' hidden="True">{{ dict_sheet[26].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[26].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[26].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[34].get('BOR')) }}"></span></td>
+                        <td>Rompin</td>
+                        <td id='malerompin'>{{ dict_sheet[34].get('Availability_male') }}</td>
+                        <td id='femalerompin'>{{ dict_sheet[34].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[34].get('Availability_total') }}/{{ dict_sheet[34].get('Capacity') }}</td>
+                        <td id='caprompin' hidden="True">{{ dict_sheet[34].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[34].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[34].get('Last_updated')) }} hr
+                        </td>
+                    </tr>---->
+                    <!-----<tr>
+                        <td><span class="{{ bor_colors(dict_sheet[31].get('BOR')) }}"></span></td>
+                        <td>Sg kiol(T)</td>
+                        <td id='malesg_kiol'>{{ dict_sheet[31].get('Availability_male') }}</td>
+                        <td id='femalesg_kiol'>{{ dict_sheet[31].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[31].get('Availability_total') }}/{{ dict_sheet[31].get('Capacity') }}</td>
+                        <td id='capsg_kiol' hidden="True">{{ dict_sheet[31].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[31].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[31].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[32].get('BOR')) }}"></span></td>
+                        <td>Panderas(T)</td>
+                        <td id='malepanderas'>{{ dict_sheet[32].get('Availability_male') }}</td>
+                        <td id='femalepanderas'>{{ dict_sheet[32].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[32].get('Availability_total') }}/{{ dict_sheet[32].get('Capacity') }}</td>
+                        <td id='cappanderas' hidden="True">{{ dict_sheet[32].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[32].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[32].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[33].get('BOR')) }}"></span></td>
+                        <td>Sg Koyan(T)</td>
+                        <td id='malesg_koyan'>{{ dict_sheet[33].get('Availability_male') }}</td>
+                        <td id='femalesg_koyan'>{{ dict_sheet[33].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[33].get('Availability_total') }}/{{ dict_sheet[33].get('Capacity') }}</td>
+                        <td id='capsg_koyan' hidden="True">{{ dict_sheet[33].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[33].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[33].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[24].get('BOR')) }}"></span></td>
+                        <td>Azzahra Kuantan(S)</td>
+                        <td id='maleazzahra'>{{ dict_sheet[24].get('Availability_male') }}</td>
+                        <td id='femaleazzahra'>{{ dict_sheet[24].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[24].get('Availability_total') }}/{{ dict_sheet[24].get('Capacity') }}</td>
+                        <td id='capazzahra' hidden="True">{{ dict_sheet[24].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[24].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[24].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[25].get('BOR')) }}"></span></td>
+                        <td>Sulaiman Temerloh(S)</td>
+                        <td id='malesulaiman_t'>{{ dict_sheet[25].get('Availability_male') }}</td>
+                        <td id='femalesulaiman_t'>{{ dict_sheet[25].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[25].get('Availability_total') }}/{{ dict_sheet[25].get('Capacity') }}</td>
+                        <td id='capsulaiman_t' hidden="True">{{ dict_sheet[25].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[25].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[25].get('Last_updated')) }} hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="{{ bor_colors(dict_sheet[30].get('BOR')) }}"></span></td>
+                        <td>Test</td>
+                        <td id='maleancasa'>{{ dict_sheet[30].get('Availability_male') }}</td>
+                        <td id='femaleancasa'>{{ dict_sheet[30].get('Availability_female') }}</td>
+                        <td>{{ dict_sheet[30].get('Availability_total') }}/{{ dict_sheet[30].get('Capacity') }}</td>
+                        <td id='capancasa' hidden="True">{{ dict_sheet[30].get('Capacity') }}</td>
+                        <td>{{ dict_sheet[30].get('Discharge') }}</td>
+                        <td> {{ maxhours(dict_sheet[30].get('Last_updated')) }} hr
+                        </td>
+                    </tr>--->
+                    <tr>
+                        <td colspan="7">*Availability of beds, #Last updated in hours ago, $Potential discharges</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+            <!-- Modal form PKRC START-->
+            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">
+                                Update Bed Status
+                            </h4>
+                        </div>
+                        <form action="/result_pkrc" method="POST">
+                            <div class="modal-body">
+                                <div class="md-3">
+                                    <select class="form-control" name="pkrc" id="pkrc" required>
+                                        <option value="" disabled selected>
+                                            Select PKRC
+                                        </option>
+                                        <option value="sukpa">SUKPA</option>
+                                        <option value="ilkkm">ILKKM</option>
+                                        <option value="ilkkm_covid">ILKKM(COVID)</option>
+                                        <!---<option value="kuipsas">KUIPSAS</option>--->
+                                        <!---<option value="ump">UMP</option>--->
+                                        <option value="maran">Maran</option>
+                                        <!----<option value="ipglipis">IPG Lipis</option>--->
+                                        <!----<option value="temerloh">Temerloh</option>---->
+                                        <option value="uniten">UNITEN</option>
+                                        <!-----<option value="rompin">Rompin</option>----->
+                                        <!-----<option value="azzahra">Azzahra Kuantan(S)</option>>--->
+                                        <!---<option value="sulaiman_t">Sulaiman Temerloh(S)</option>--->
+                                        
+                                    </select>
+                                    <br />
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="a_male" class="col-sm-8 col-form-label">Male Bed Availability</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" type="number" name="a_male"
+                                            id="a_male" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="a_female" class="col-sm-8 col-form-label">Female Bed
+                                        Availability</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" type="number" name="a_female" id="a_female"
+                                            autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="capacity" class="col-sm-8 col-form-label">Capacity</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" type="number" name="capacity" id="capacity" min="1"
+                                            autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="discharge" class="col-sm-8 col-form-label">Discharges (AM
+                                        only)</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" type="number" name="discharge" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="passkey" class="col-sm-8 col-form-label">PASSKEY(4 digit)</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" type="password" name="passkey" placeholder="  ----  "
+                                            autocomplete="off" maxlength="4" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <input class="btn btn-block btn-success" type="submit" value="Submit" />
+                            </div>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="hide1" class="text-center">
+    <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">UPDATE
+        BED
+        STATUS</a>
+</div>
+<br>
+<br>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Total male*</th>
+                <th>Total female*</th>
+                <th>Grand total*</th>
+                <th>Total beds</th>
+                <th>BOR(%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="{{ bor_colors(dict_sh_grand[0].get('bor')) }}"></span></td>
+                <td>PKRC</td>
+                <td>{{ dict_sh_grand[0].get('total_male') }}</td>
+                <td>{{ dict_sh_grand[0].get('total_female') }}</td>
+                <td>{{ dict_sh_grand[0].get('grand_total') }}</td>
+                <td>{{ dict_sh_grand[0].get('grand_beds') }}</td>
+                <td>{{ dict_sh_grand[0].get('bor') }}</td>
+            </tr>
+            <tr>
+                <td><span class="{{ bor_colors(dict_sh_grand[1].get('bor')) }}"></span></td>
+                <td>PKRCS</td>
+                <td>{{ dict_sh_grand[1].get('total_male') }}</td>
+                <td>{{ dict_sh_grand[1].get('total_female') }}</td>
+                <td>{{ dict_sh_grand[1].get('grand_total') }}</td>
+                <td>{{ dict_sh_grand[1].get('grand_beds') }}</td>
+                <td>{{ dict_sh_grand[1].get('bor') }}</td>
+            </tr>
+            <tr>
+                <td><span class="{{ bor_colors(dict_sh_grand[2].get('bor')) }}"></span></td>
+                <td>Hospital(Gov)</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{ dict_sh_grand[2].get('grand_total') }}</td>
+                <td>{{ dict_sh_grand[2].get('grand_beds') }}</td>
+                <td>{{ dict_sh_grand[2].get('bor') }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+</div>
+</div>
+
+{% endblock %}
+{% block scripts%}
+{{super()}}
+<script type='text/javascript'>
+
+    $(document).ready(function () {
+
+        $('#pkrc').change(function () {
+
+            var selected = $('select[name=pkrc] option').filter(':selected').val();
+            var pkrcmale = $('#male' + selected).text();
+            var pkrcfemale = $('#female' + selected).text();
+            var pkrccap = $('#cap' + selected).text();
+
+            $('#a_male').val(pkrcmale);
+            $('#a_female').val(pkrcfemale);
+            $('#capacity').val(pkrccap);
+        });
+    });
+
+</script>
+{% endblock %}
