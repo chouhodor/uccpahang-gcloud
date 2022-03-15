@@ -108,17 +108,18 @@
                   <td> {{ maxhours(dict_sheet[19].get('Last_updated')) }} hr
                   </td>
               </tr>
-              <!-----<tr>
-                  <td><span class="{{ bor_colors(dict_sheet[20].get('BOR')) }}"></span></td>
-                  <td>I-KPKT</td>
-                  <td>{{ dict_sheet[20].get('Availability_male') }}</td>
-                  <td>{{ dict_sheet[20].get('Availability_female') }}</td>
-                  <td>{{ dict_sheet[20].get('Availability_total') }}/{{ dict_sheet[20].get('Capacity') }}</td>
-                  <td>{{ dict_sheet[20].get('Discharge') }}</td>
-                  <td>{{ maxhours(dict_sheet[20].get('Last_updated')) }} hr
-                  </td>
-              </tr>
               <tr>
+                <td><span class="{{ bor_colors(dict_sheet[20].get('BOR')) }}"></span></td>
+                <td>ILKKM(COVID)</td>
+                <td id='maleilkkm_covid'>{{ dict_sheet[20].get('Availability_male') }}</td>
+                <td id='femaleilkkm_covid'>{{ dict_sheet[20].get('Availability_female') }}</td>
+                <td>{{ dict_sheet[20].get('Availability_total') }}/{{ dict_sheet[20].get('Capacity') }}</td>
+                <td id='capilkkm_covid' hidden="True">{{ dict_sheet[20].get('Capacity') }}</td>
+                <td>{{ dict_sheet[20].get('Discharge') }}</td>
+                <td>{{ maxhours(dict_sheet[20].get('Last_updated')) }} hr
+                </td>
+            </tr>
+            <!--<tr>
                   <td><span class="{{ bor_colors(dict_sheet[22].get('BOR')) }}"></span></td>
                   <td>KUIPSAS</td>
                   <td>{{ dict_sheet[22].get('Availability_male') }}</td>
@@ -338,7 +339,7 @@
               </tr>
               <tr>
                   <td><span class="{{ bor_colors(dict_sheet[4].get('BOR')) }}"></span></td>
-                  <td>HMS (COVID)</td>
+                  <td>HMS</td>
                   <td>{{ dict_sheet[4].get('Availability_male') }}</td>
                   <td>{{ dict_sheet[4].get('Availability_female') }}</td>
                   <td>{{ dict_sheet[4].get('Availability_total') }}/{{ dict_sheet[4].get('Capacity') }}</td>
@@ -349,7 +350,7 @@
               </tr>
               <tr>
                   <td><span class="{{ bor_colors(dict_sheet[6].get('BOR')) }}"></span></td>
-                  <td>H Jengka (COVID)</td>
+                  <td>H Jengka</td>
                   <td>{{ dict_sheet[6].get('Availability_male') }}</td>
                   <td>{{ dict_sheet[6].get('Availability_female') }}</td>
                   <td>{{ dict_sheet[6].get('Availability_total') }}/{{ dict_sheet[6].get('Capacity') }}</td>
@@ -371,8 +372,7 @@
               </tr>
               <tr>
                   <td><span class="{{ bor_colors(dict_sheet[10].get('BOR')) }}"></span></td>
-                  <td>H Raub (COVID)
-                  </td>
+                  <td>H Raub</td>
                   <td>{{ dict_sheet[10].get('Availability_male') }}</td>
                   <td>{{ dict_sheet[10].get('Availability_female') }}</td>
                   <td>{{ dict_sheet[10].get('Availability_total') }}/{{ dict_sheet[10].get('Capacity') }}</td>
