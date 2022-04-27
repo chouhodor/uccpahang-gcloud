@@ -94,7 +94,7 @@ def bor_color (color):
 
 @app.route('/', methods=['POST','GET'])
 def index():
-
+    '''
     maxhours=maxhour
     bor_colors = bor_color
       
@@ -109,10 +109,12 @@ def index():
     maxhours=maxhours,
     bor_colors=bor_colors,
     )
+    '''
+    return render_template('endlife.html')
 
 @app.route('/hospital', methods=['POST','GET'])
 def hospital():
-
+    '''
     maxhours=maxhour
     bor_colors = bor_color
       
@@ -127,7 +129,9 @@ def hospital():
     maxhours=maxhours,
     bor_colors=bor_colors,
     )
-
+    '''
+    return render_template('endlife.html')
+    
 @app.route('/private', methods=['POST','GET'])
 def private():
 
